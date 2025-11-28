@@ -14,9 +14,40 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+from konnectlysite.views import (
+    CountryListView,
+    CountryDetailView,
+    SectorsListView,
+    SectorsDetailView,
+    InvestmentPathwayListView,
+    InvestmentPathwayDetailView,
+    DataLinksListView,
+    DataLinksDetailView,
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/countries/", CountryListView.as_view(), name="country-list"),
+    path("api/countries/<int:id>/", CountryDetailView.as_view(), name="country-detail"),
+    path("api/sectors/", SectorsListView.as_view(), name="sectors-list"),
+    path("api/sectors/<int:id>/", SectorsDetailView.as_view(), name="sectors-detail"),
+    path(
+        "api/investment-pathways/",
+        InvestmentPathwayListView.as_view(),
+        name="investment-pathway-list",
+    ),
+    path(
+        "api/investment-pathways/<int:id>/",
+        InvestmentPathwayDetailView.as_view(),
+        name="investment-pathway-detail",
+    ),
+    path("api/data-links/", DataLinksListView.as_view(), name="data-links-list"),
+    path(
+        "api/data-links/<int:id>/",
+        DataLinksDetailView.as_view(),
+        name="data-links-detail",
+    ),
 ]

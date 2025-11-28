@@ -23,15 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%v_v+bsnqq3ndoju**mx+%1j7!*v%)(tcxd+(tee(diy2&-&p+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "coresheaders",
+    "konnectlysite",
+    "corsheaders",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -75,13 +75,17 @@ TEMPLATES = [
 WSGI_APPLICATION = "konnectlysite.wsgi.application"
 
 
-# Database
+# Database - Configured specifically for POSTGRESQL
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "konnectly_db",
+        "USER": "kondwani",
+        "PASSWORD": "Pepper@2022",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 

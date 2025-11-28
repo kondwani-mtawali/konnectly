@@ -3,6 +3,6 @@
 
 # Ignore other database files
 *.db
-
+__pycache__/
 #Ignore .venv
 .venv/
