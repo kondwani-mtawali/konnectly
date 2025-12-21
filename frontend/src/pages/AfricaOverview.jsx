@@ -29,9 +29,9 @@ export default function AfricaMap() {
 
         //D3 Projection Setup: Map Display Configurations
         const projection = geoMercator()
-            .center([20, 0])
-            .scale(width * 0.35)
-            .translate([width / 2, height / 2]);
+            .center([20, 5])
+            .scale(width * 0.30)
+            .translate([width / 2, height / 2.1]);
 
         //Converts GeoJSON components into <svg> path formats
         const pathGenerator = geoPath().projection(projection);
@@ -91,6 +91,34 @@ export default function AfricaMap() {
                     display: "block",
                 }}
             />
+            {/* Description Box - Top Left */}
+            <div
+                style={{
+                    position: "fixed",
+                    top: "90px",
+                    left: "20px",
+                    maxWidth: "420px",
+                    background: "rgba(17, 17, 17, 0.85)",
+                    backdropFilter: "blur(10px)",
+                    color: "white",
+                    padding: "24px",
+                    borderRadius: "16px",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                    zIndex: 100,
+                    fontFamily: "system-ui, sans-serif",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                }}
+            >
+                <h2 style={{ margin: "0 0 16px 0", fontSize: "1.8rem", fontWeight: "bold" }}>
+                    Konnectly
+                </h2>
+                <p style={{ margin: "0 0 12px 0", fontSize: "1.1rem", lineHeight: 1.6 }}>
+                    An interactive platform exploring investment opportunities across African countries.
+                </p>
+                <p style={{ margin: 0, fontSize: "1rem", lineHeight: 1.6, opacity: 0.9 }}>
+                    Click any country to view real economic data  and generate AI-powered investment pathways.
+                </p>
+            </div>
         </>
     );
 }

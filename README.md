@@ -35,17 +35,15 @@ A Python virtual environment managed with UV is used to isolate project-specific
 ### React
 React is a JavaScript frontend library used for building user interfaces through reusable components and state management. It enables Konnectly to dynamically render data-driven views in response to user interaction.
 
+### Grok-4 & OpenAI
+Used together to give your React app AI-generated investment analysis based on country-level economic data
+
 ### Vite
 Vite serves as the frontend build tool and development server. It provides instant feedback during development through fast module bundling and hot reloading, eliminating the need for full page or server reloads and enabling a smooth development experience when combined with React.
 
 ### D3-Geo
 D3-Geo is a JavaScript data visualization library specializing in geographic projections and spatial rendering. Konnectly uses D3-Geo to render an interactive map of African countries, associate economic and investment data with geographic regions, and provide visual context for country-level analysis.
 
-### OpenAI API
-The OpenAI API is used as an intelligent development assistant to support frontend logic design, debugging, and architectural decisions. It helped accelerate the implementation of complex interactions such as map navigation, route-based rendering, data-fetching workflows, and UI behavior refinement within the React and D3-based visualization system.
-
-### Grok-4
-Grok-4, accessed via the xAI API, is leveraged as an auxiliary AI reasoning and exploration tool during development. It assisted in validating implementation approaches, clarifying JavaScript and React behaviors, and exploring alternative solutions for performance, state management, and data visualization challenges encountered in the project.
 ---
 
 ## 🔁 Data Fetching & State Management
@@ -76,10 +74,6 @@ This stack enables Konnectly to retrieve, process, and visualize complex economi
 
 ## Documentation Used in Dev
 
-### Backend
-
-
-### Frontend
 - **Vite Documentation:** Explained how the project’s development server, build pipeline, and asset handling work, enabling fast iteration and correct importing of static files like GeoJSON 
 --> [https://vite.dev/guide/]
 
@@ -114,3 +108,6 @@ This stack enables Konnectly to retrieve, process, and visualize complex economi
 
 - **Open AI Chat API Referencing:** Documents the structure and usage of chat-based API calls, serving as a reference for conversational AI integration concepts.
 --> [https://platform.openai.com/docs/api-reference/chat/create]
+
+- **Prompt Engineering:** Document providing suggestive implementations for enhanced prompt responses to LLM's.
+--> [https://platform.openai.com/docs/guides/prompt-engineering]

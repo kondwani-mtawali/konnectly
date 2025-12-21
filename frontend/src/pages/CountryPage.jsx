@@ -38,9 +38,10 @@ export default function AfricanCountry() {
 
         //D3 Projection Setup: Map Display Configurations
         const projection = geoMercator()
-            .center([20, 0])
-            .scale(width * 0.48)
+            .center([20, 4])
+            .scale(width * 0.42)
             .translate([width / 2, height / 2]);
+
         //Converts GeoJSON components into <svg> path formats
         const pathGenerator = geoPath().projection(projection);
         // GeoJSON parsing to JS Object
@@ -82,7 +83,7 @@ export default function AfricanCountry() {
             const dy = bounds[1][1] - bounds[0][1];
             const x = (bounds[0][0] + bounds[1][0]) / 2;
             const y = (bounds[0][1] + bounds[1][1]) / 2;
-            const scale = 0.9 / Math.max(dx / width, dy / height);
+            const scale = 0.7 / Math.max(dx / width, dy / height);
             const finalScale = Math.min(12, Math.max(2, scale));
 
             const translateX = width / 2 - finalScale * x;
@@ -150,6 +151,24 @@ export default function AfricanCountry() {
                     color: "black",
                 }}
             >
+                {/* Generate Investment Pathway Button: Navigates to Investment Page */}
+                <button
+                    onClick={() => navigate(`/investment/${encodeURIComponent(selected.name)}`, { state: { countryData: selected } })}
+                    style={{
+                        marginTop: "40px",
+                        padding: "16px 32px",
+                        fontSize: "1.2rem",
+                        background: "#27ae60",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "12px",
+                        cursor: "pointer",
+                        width: "100%",
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+                    }}
+                >
+                    Generate Investment Opportunities
+                </button>
 
                 {/* Reusable Component: Loops through data in API + ensures correct display */}
                 {/* Take notes on AI Generated: InfoItem Loop Structure */}
@@ -231,24 +250,7 @@ export default function AfricanCountry() {
                                         value={selected.political_stability_percentile && `${selected.political_stability_percentile.toFixed(1)}th percentile`}
                                     />
 
-                                    {/* Generate Investment Pathway Button: Navigates to Investment Page */}
-                                    <button
-                                        onClick={() => navigate(`/investment/${encodeURIComponent(selected.name)}`, { state: { countryData: selected } })}
-                                        style={{
-                                            marginTop: "40px",
-                                            padding: "16px 32px",
-                                            fontSize: "1.2rem",
-                                            background: "#27ae60",
-                                            color: "white",
-                                            border: "none",
-                                            borderRadius: "12px",
-                                            cursor: "pointer",
-                                            width: "100%",
-                                            boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
-                                        }}
-                                    >
-                                        Generate Investment Opportunities
-                                    </button>
+
                                 </>
 
 

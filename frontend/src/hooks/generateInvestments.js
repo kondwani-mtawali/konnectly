@@ -34,7 +34,7 @@ export const useGenerateInvestment = (countryData) => {
         // Prompt is a defined string 
         // Accesses country data(w/ specified formatting & potential null values) 
         // Data passed as parameter in func call
-        const prompt = `I'm interested in make foreign direct investment in African countries. Provide me with a detailed investment opportunities response for ${countryData.name}.
+        const prompt = `I'm interested in make foreign direct investment in African countries. Provide me with a detailed, fact-based, investment opportunities response for ${countryData.name}.
 
 Use this API data:
 - GDP: $${countryData.gdp?.toLocaleString() || "N/A"} (growth: ${countryData.gdp_growth_rate || "N/A"}%)
@@ -48,26 +48,28 @@ Use this API data:
 - Political Stability: ${countryData.political_stability_percentile || "N/A"}th percentile
 - Labor Force Participation: ${countryData.labor_force_participation || "N/A"}%
 
-Generate:
-1. Without an overview, provide 3 Investment Pathways (numbered, 3-4 sentences each, with sector, rationale, and entry strategy)
-2. For Each Invetment Pathway, construct a detailed step by step approach an individual living in the United States can take to participate in the investment pathway.
-3. Risks & Mitigation (bullet points)
-4. Resources to explore
+Generate the following in plaintext format:
+1) Begin with a simple disclaimar that this is an AI generated investment strategy.
+2) Without an overview, provide 3 Investment Pathways (numbered, 3-4 sentences each, with sector, rationale based on data, and a proven entry strategy)
+3) For Each Investment Pathway, construct a detailed step by step approach an individual living in the United States can take to participate in the investment pathway.
+4) Risks & Mitigation (bullet points, grounded in data like political responsibility)
 
-Be professional, actionable, and optimistic but realistic for 2025-2030.`;
+
+Be professional, actionable, and optimistic but realistic for 2025-2030. Base your information on data, citing sources. Output response with a consistent structure.`;
 
         // Calls Grok-4 to generate prompt response  
         openai.chat.completions
             .create({
                 messages: [{ role: "user", content: prompt }],
+                reasoning: { effort: "high" },
                 model: "grok-4",
-                temperature: 0.7, // Model creativity use? -> EXPERIMENT HERE
-                max_tokens: 1000, // Output Limit
+                temperature: 0.5, // Model creativity use? -> lower = more consistency
+                max_tokens: 1500, // Output Limit
             })
             .then((res) => { // sucess event
                 console.log("LLM Success:", res);  // debugging
                 if (res.choices?.[0]?.message?.content) {
-                    setResponse(res.choices[0].message.content.trim());
+                    setResponse(res.choices[0].message.content.trim()); // extracts generated text from LLM
                 } else {
                     setError("Empty response from LLM");
                 }
